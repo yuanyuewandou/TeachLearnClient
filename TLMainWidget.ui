@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>724</width>
-    <height>574</height>
+    <width>1017</width>
+    <height>665</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="TLAnimationButton" name="m_homeButton" native="true">
    <property name="geometry">
     <rect>
-     <x>340</x>
-     <y>80</y>
+     <x>560</x>
+     <y>90</y>
      <width>141</width>
      <height>101</height>
     </rect>
@@ -26,11 +26,47 @@
   <widget class="TLSwitchButton" name="m_languageSwitchButton" native="true">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>110</y>
+     <x>600</x>
+     <y>20</y>
      <width>121</width>
      <height>51</height>
     </rect>
+   </property>
+  </widget>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>10</y>
+     <width>351</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <widget class="QWidget" name="tab">
+    <attribute name="title">
+     <string>Tab 1</string>
+    </attribute>
+   </widget>
+   <widget class="QWidget" name="tab_2">
+    <attribute name="title">
+     <string>Tab 2</string>
+    </attribute>
+   </widget>
+  </widget>
+  <widget class="QTableWidget" name="m_tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>350</y>
+     <width>301</width>
+     <height>211</height>
+    </rect>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOn</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOn</enum>
    </property>
   </widget>
  </widget>

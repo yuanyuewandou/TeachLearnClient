@@ -60,4 +60,7 @@ TRANSLATIONS = \
 $$PWD/qm/lang_en.ts \
 $$PWD/qm/lang_zh.ts
 
+RESOURCES += \
+    res.qrc
+
 

@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/qss/TLStyle.qss</file>
+        <file>res/image/down_alt.png</file>
+        <file>res/image/left_alt.png</file>
+        <file>res/image/right_alt.png</file>
+        <file>res/image/up_alt.png</file>
+    </qresource>
+</RCC>

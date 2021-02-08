@@ -19,6 +19,7 @@ public:
     static TLSettingObj* getInstance();
     void initData();
     bool runInit();
+    void initStyle();
     bool setLanguage(EN_LANGUAGE laguage = EN_LANGUAGE::LANGUAGE_ZH);
 private:
     explicit TLSettingObj(QObject *parent = nullptr);

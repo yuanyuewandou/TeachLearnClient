@@ -2,6 +2,7 @@
 #include "TLSettingObj.h"
 #include "TLTranslateStr.h"
 #include "TLLog.h"
+#include <QFile>
 
 TLSettingObj* TLSettingObj::m_pInstance = new TLSettingObj(nullptr);
 
@@ -30,6 +31,8 @@ bool TLSettingObj::runInit()
     {
         m_tranlateStr = new TLTranslateStr(nullptr);
     }
+
+    initStyle();
     return true;
 }
 
@@ -43,3 +46,12 @@ bool TLSettingObj::setLanguage(EN_LANGUAGE laguage)
     if(bRet && m_tranlateStr)
         m_tranlateStr->translateUi();
 }
+
+void TLSettingObj::initStyle()
+{
+    QFile styleFile(":/res/qss/TLStyle.qss");
+    styleFile.open(QIODevice::ReadOnly);
+    QString strStyleSheet(styleFile.readAll());;
+    qApp->setStyleSheet(strStyleSheet);
+}
+

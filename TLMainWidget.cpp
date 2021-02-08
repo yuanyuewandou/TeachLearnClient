@@ -33,7 +33,8 @@ void TLMainWidget::initUi()
 
 void TLMainWidget::initData()
 {
-
+    ui->m_tableWidget->setRowCount(5);
+    ui->m_tableWidget->setColumnCount(5);
 }
 
 void TLMainWidget::initConnect()
