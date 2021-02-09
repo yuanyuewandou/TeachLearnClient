@@ -2,7 +2,7 @@
 #define TLMAINWIDGET_H
 
 #include "TLWidget.h"
-
+class TLWhiteBoardMainWindow;
 namespace Ui {
 class TLMainWidget;
 }
@@ -20,8 +20,10 @@ private:
     void initConnect();
 private slots:
     void slotLanguageSwitch(bool);
+    void slotWhiteBoardClicked();
 private:
     Ui::TLMainWidget *ui;
+    TLWhiteBoardMainWindow* m_whiteBoardWindow;
 };
 
 #endif // TLMAINWIDGET_H

@@ -5,5 +5,7 @@
         <file>res/image/left_alt.png</file>
         <file>res/image/right_alt.png</file>
         <file>res/image/up_alt.png</file>
+        <file>res/image/home.png</file>
+        <file>res/image/clipboard.png</file>
     </qresource>
 </RCC>

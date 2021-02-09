@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -23,7 +23,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 INCLUDEPATH += ./TLWidget\
-                ./TLUtils
+                ./TLUtils\
+                ./TLWhiteBoard
 
 SOURCES += \
         main.cpp \
@@ -33,7 +34,12 @@ SOURCES += \
     TLWidget/TLTranslateStr.cpp \
     TLSettingObj.cpp \
     TLWidget/TLSwitchButton.cpp \
-    TLUtils/TLLog.cpp
+    TLUtils/TLLog.cpp \
+    TLWhiteBoard/TLWhiteBoardMainWindow.cpp \
+    TLWhiteBoard/TLWbToolDockWidget.cpp \
+    TLWhiteBoard/TLWbToolForm.cpp \
+    TLWhiteBoard/TLWbView.cpp \
+    TLWhiteBoard/TLWbScene.cpp
 
 
 
@@ -45,12 +51,20 @@ HEADERS += \
     TLWidget/TLTranslateStr.h \
     TLSettingObj.h \
     TLWidget/TLSwitchButton.h \
-    TLUtils/TLLog.h
+    TLUtils/TLLog.h \
+    TLWhiteBoard/TLWhiteBoardMainWindow.h \
+    TLWhiteBoard/TLWbToolDockWidget.h \
+    TLWhiteBoard/TLWbToolForm.h \
+    TLWhiteBoard/TLWbView.h \
+    TLWhiteBoard/TLWbScene.h
 
 
 
 FORMS += \
-        TLMainWidget.ui
+        TLMainWidget.ui \
+    TLWhiteBoard/TLWhiteBoardMainWindow.ui \
+    TLWhiteBoard/TLWbToolDockWidget.ui \
+    TLWhiteBoard/TLWbToolForm.ui
 
 
 SUBDIRS += \

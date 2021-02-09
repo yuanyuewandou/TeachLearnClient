@@ -16,8 +16,8 @@
   <widget class="TLAnimationButton" name="m_homeButton" native="true">
    <property name="geometry">
     <rect>
-     <x>560</x>
-     <y>90</y>
+     <x>770</x>
+     <y>40</y>
      <width>141</width>
      <height>101</height>
     </rect>
@@ -67,6 +67,16 @@
    </property>
    <property name="horizontalScrollBarPolicy">
     <enum>Qt::ScrollBarAlwaysOn</enum>
+   </property>
+  </widget>
+  <widget class="TLAnimationButton" name="m_whiteBoardButton" native="true">
+   <property name="geometry">
+    <rect>
+     <x>630</x>
+     <y>150</y>
+     <width>91</width>
+     <height>101</height>
+    </rect>
    </property>
   </widget>
  </widget>

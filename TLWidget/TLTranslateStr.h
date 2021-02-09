@@ -6,6 +6,7 @@
 extern QString g_strEnglish;
 extern QString g_strChinese;
 extern QString g_strHome;
+extern QString g_strWhiteBoard;
 
 class TLTranslateStr : public QObject
 {
