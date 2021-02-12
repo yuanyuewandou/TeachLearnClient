@@ -7,5 +7,15 @@
         <file>res/image/up_alt.png</file>
         <file>res/image/home.png</file>
         <file>res/image/clipboard.png</file>
+        <file>res/image/wb_tool_line.png</file>
+        <file>res/image/wb_tool_oval.png</file>
+        <file>res/image/wb_tool_triangle.png</file>
+        <file>res/image/wb_tool_square.png</file>
+        <file>res/image/wb_tool_pen.png</file>
+        <file>res/image/wb_color_black.png</file>
+        <file>res/image/wb_tool_select.png</file>
+        <file>res/image/wb_tool_erase.png</file>
+        <file>res/image/wb_tool_text.png</file>
+        <file>res/image/wb_tool_shapes.png</file>
     </qresource>
 </RCC>

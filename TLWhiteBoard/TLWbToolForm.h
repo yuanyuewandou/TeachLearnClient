@@ -22,7 +22,11 @@ private:
     void initData();
     void initConnect();
 private slots:
-    void slotLinePushButtonClicked();
+    void slotShapePushButtonClicked();
+    void slotTextPushButtonClicked();
+    void slotPenPushButtonClicked();
+    void slotErasePushButtonClicked();
+    void slotSelectPushButtonClicked();
 private:
     Ui::TLWbToolForm *ui;
     int m_type;

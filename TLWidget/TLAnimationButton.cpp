@@ -13,13 +13,13 @@ TLAnimationButton::TLAnimationButton(QWidget *parent) :QWidget(parent)
 
     m_enterAnimation = new QPropertyAnimation(this, "");
     m_enterAnimation->setStartValue(0);
-    m_enterAnimation->setEndValue(5);
+    m_enterAnimation->setEndValue(3);
     m_enterAnimation->setDuration(200);
     connect(m_enterAnimation,SIGNAL(valueChanged(QVariant)), this, SLOT(enterImageChanged(QVariant)));
 
     m_leaveAnimation = new QPropertyAnimation(this, "");
     m_leaveAnimation->setStartValue(0);
-    m_leaveAnimation->setEndValue(5);
+    m_leaveAnimation->setEndValue(3);
     m_leaveAnimation->setDuration(200);
     connect(m_leaveAnimation,SIGNAL(valueChanged(QVariant)), this, SLOT(leaveImageChanged(QVariant)));
 }

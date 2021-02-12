@@ -1,8 +1,8 @@
 #ifndef TLAnimationButton_H
 #define TLAnimationButton_H
 
-#include <QWidget>
 #include <QVariant>
+#include <QWidget>
 
 class QPropertyAnimation;
 
@@ -33,6 +33,7 @@ private:
     int m_targetHeight;                   //目标高度
     QString m_text;                       //显示文字
     QString m_image;                      //图像路径
+
 
 private slots:
     void enterImageChanged(QVariant index);

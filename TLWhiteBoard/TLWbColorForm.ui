@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>TLWbToolForm</class>
- <widget class="QWidget" name="TLWbToolForm">
+ <class>TLWbColorForm</class>
+ <widget class="QWidget" name="TLWbColorForm">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>308</width>
-    <height>315</height>
+    <width>328</width>
+    <height>32</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -19,21 +19,21 @@
   <property name="minimumSize">
    <size>
     <width>0</width>
-    <height>0</height>
+    <height>32</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>16777215</width>
-    <height>16777215</height>
+    <width>456456</width>
+    <height>32</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QHBoxLayout" name="horizontalLayout">
    <property name="spacing">
-    <number>10</number>
+    <number>0</number>
    </property>
    <property name="leftMargin">
     <number>0</number>
@@ -48,34 +48,49 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QGroupBox" name="m_toolGroupBox">
+    <widget class="QFrame" name="m_colorFrame">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="title">
-      <string/>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>32</height>
+      </size>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>32</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
       <property name="spacing">
        <number>10</number>
       </property>
       <property name="leftMargin">
-       <number>10</number>
+       <number>0</number>
       </property>
       <property name="topMargin">
-       <number>10</number>
+       <number>0</number>
       </property>
       <property name="rightMargin">
-       <number>10</number>
+       <number>0</number>
       </property>
       <property name="bottomMargin">
-       <number>10</number>
+       <number>0</number>
       </property>
       <item>
-       <widget class="QPushButton" name="m_selectButton">
+       <widget class="TLWbColorButton" name="m_colorWhiteButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -109,7 +124,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="m_toolPenButton">
+       <widget class="TLWbColorButton" name="m_colorBlackButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -133,6 +148,9 @@
         </property>
         <property name="checkable">
          <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
         </property>
         <property name="autoExclusive">
          <bool>true</bool>
@@ -140,7 +158,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="m_toolShapeButton">
+       <widget class="TLWbColorButton" name="m_colorRedButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -164,6 +182,9 @@
         </property>
         <property name="checkable">
          <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
         </property>
         <property name="autoExclusive">
          <bool>true</bool>
@@ -171,7 +192,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="m_toolTextButton">
+       <widget class="TLWbColorButton" name="m_colorGreenButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -195,6 +216,9 @@
         </property>
         <property name="checkable">
          <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
         </property>
         <property name="autoExclusive">
          <bool>true</bool>
@@ -202,7 +226,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="m_toolEraseButton">
+       <widget class="TLWbColorButton" name="m_colorBlueButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -226,6 +250,111 @@
         </property>
         <property name="checkable">
          <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="TLWbColorButton" name="m_colorYellowButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="TLWbColorButton" name="m_colorPinkButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+        <property name="autoExclusive">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="TLWbColorButton" name="m_colorGrayButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
         </property>
         <property name="autoExclusive">
          <bool>true</bool>
@@ -235,52 +364,13 @@
      </layout>
     </widget>
    </item>
-   <item>
-    <widget class="QStackedWidget" name="m_stackedWidget">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <widget class="TLWbShapeForm" name="m_shapePage"/>
-     <widget class="TLWbPenForm" name="m_penPage"/>
-     <widget class="TLWbTextForm" name="m_textPage"/>
-    </widget>
-   </item>
-   <item>
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
   </layout>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TLWbShapeForm</class>
-   <extends>QWidget</extends>
-   <header>TLWbShapeForm.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>TLWbTextForm</class>
-   <extends>QWidget</extends>
-   <header>TLWbTextForm.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>TLWbPenForm</class>
-   <extends>QWidget</extends>
-   <header>TLWbPenForm.h</header>
-   <container>1</container>
+   <class>TLWbColorButton</class>
+   <extends>QPushButton</extends>
+   <header>TLWbColorButton.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

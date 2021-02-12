@@ -4,6 +4,7 @@
 #include "TLWbScene.h"
 #include "TLWbView.h"
 #include "TLWbShape.h"
+#include "TLWbMoveWidget.h"
 
 TLWhiteBoardMainWindow::TLWhiteBoardMainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -28,12 +29,6 @@ void TLWhiteBoardMainWindow::translateUi()
 
 void TLWhiteBoardMainWindow::initUi()
 {
-    TLWbToolForm* toolForm = new TLWbToolForm();
-    ui->m_toolDockWidget->setWidget(toolForm);
-    addDockWidget(Qt::TopDockWidgetArea, ui->m_toolDockWidget);
-    setDockNestingEnabled(false);
-    ui->m_toolDockWidget->hide();
-
     m_scene = new TLWbScene();
     m_scene->setSceneRect(0,0,800,500);
     //m_scene->setToolType(TOOL_LINE);
@@ -45,6 +40,12 @@ void TLWhiteBoardMainWindow::initUi()
     wbView->setFixedSize(800,500);
     wbView->setSceneRect(0,0,800,500);
     setCentralWidget(wbView);
+
+    TLWbToolForm* toolForm = new TLWbToolForm(this);
+    toolForm->setGeometry(10, 10, 332,300);
+    toolForm->show();
+    TLWbMoveWidget *moveWidget = new TLWbMoveWidget(this);
+    moveWidget->setWidget(toolForm);
 }
 
 void TLWhiteBoardMainWindow::initData()
@@ -60,19 +61,12 @@ void TLWhiteBoardMainWindow::initConnect()
 void TLWhiteBoardMainWindow::showEvent(QShowEvent *event)
 {
     Q_UNUSED(event);
-    if(isVisible())
-    {
-        ui->m_toolDockWidget->show();
-    }
-    else
-    {
-        ui->m_toolDockWidget->hide();
-    }
+
 }
 
 void TLWhiteBoardMainWindow::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event);
-    ui->m_toolDockWidget->hide();
+
 }
 

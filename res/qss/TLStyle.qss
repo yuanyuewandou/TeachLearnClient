@@ -119,6 +119,12 @@ QScrollBar::sub-line:vertical
     border-radius:0px;
 }
 
+QPushButton{
+border: 0px solid rgb(100,125,100);}
+
+QPushButton:checked{
+border:2px solid rgb(100,125,100);}
+
 
 
 

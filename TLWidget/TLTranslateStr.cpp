@@ -4,6 +4,7 @@ QString g_strEnglish;
 QString g_strChinese;
 QString g_strHome;
 QString g_strWhiteBoard;
+QString g_strWhiteBoardTool;
 TLTranslateStr::TLTranslateStr(QObject *parent) : QObject(parent)
 {
     translateUi();
@@ -15,5 +16,6 @@ void TLTranslateStr::translateUi()
     g_strChinese = tr("Chinese");
     g_strHome = tr("Home");
     g_strWhiteBoard = tr("White Board");
+    g_strWhiteBoardTool = tr("White Board Tool");
 }
 

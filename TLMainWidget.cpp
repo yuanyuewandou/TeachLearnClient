@@ -28,11 +28,20 @@ void TLMainWidget::translateUi()
 
     ui->m_whiteBoardButton->setText(g_strWhiteBoard);
     ui->m_whiteBoardButton->setImage(IMAGE_WHITE_BOARD);
+
 }
 
 void TLMainWidget::initUi()
 {
     m_whiteBoardWindow = new TLWhiteBoardMainWindow(this);
+
+//    QString strStyle = "QPushButton{\
+//                    border: 0px solid red;} \
+//                    QPushButton:checked{ \
+//                   border:2px solid black;}";
+//    ui->pushButton->setStyleSheet(strStyle);
+//    ui->pushButton_2->setStyleSheet(strStyle);
+
 }
 
 void TLMainWidget::initData()

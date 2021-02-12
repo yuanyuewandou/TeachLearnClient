@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 class TLWbScene;
+class TLWbToolForm;
 namespace Ui {
 class TLWhiteBoardMainWindow;
 }
@@ -26,6 +27,7 @@ private slots:
 private:
     Ui::TLWhiteBoardMainWindow *ui;
     TLWbScene* m_scene;
+    TLWbToolForm* m_toolForm;
 };
 
 #endif // TLWHITEBOARDMAINWINDOW_H

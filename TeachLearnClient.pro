@@ -36,7 +36,6 @@ SOURCES += \
     TLWidget/TLSwitchButton.cpp \
     TLUtils/TLLog.cpp \
     TLWhiteBoard/TLWhiteBoardMainWindow.cpp \
-    TLWhiteBoard/TLWbToolDockWidget.cpp \
     TLWhiteBoard/TLWbToolForm.cpp \
     TLWhiteBoard/TLWbView.cpp \
     TLWhiteBoard/TLWbScene.cpp \
@@ -45,7 +44,15 @@ SOURCES += \
     TLWhiteBoard/TLWbRectangle.cpp \
     TLWhiteBoard/TLWbTriangle.cpp \
     TLWhiteBoard/TLWbOval.cpp \
-    TLWhiteBoard/TLWbGraffiti.cpp
+    TLWhiteBoard/TLWbGraffiti.cpp \
+    TLWhiteBoard/TLWbColorButton.cpp \
+    TLWhiteBoard/TLWbColorForm.cpp \
+    TLWhiteBoard/TLWbLineWidthForm.cpp \
+    TLWhiteBoard/TLWbShapeForm.cpp \
+    TLWhiteBoard/TLWbShapeFillForm.cpp \
+    TLWhiteBoard/TLWbTextForm.cpp \
+    TLWhiteBoard/TLWbPenForm.cpp \
+    TLWhiteBoard/TLWbMoveWidget.cpp
 
 
 
@@ -59,7 +66,6 @@ HEADERS += \
     TLWidget/TLSwitchButton.h \
     TLUtils/TLLog.h \
     TLWhiteBoard/TLWhiteBoardMainWindow.h \
-    TLWhiteBoard/TLWbToolDockWidget.h \
     TLWhiteBoard/TLWbToolForm.h \
     TLWhiteBoard/TLWbView.h \
     TLWhiteBoard/TLWbScene.h \
@@ -68,15 +74,29 @@ HEADERS += \
     TLWhiteBoard/TLWbRectangle.h \
     TLWhiteBoard/TLWbTriangle.h \
     TLWhiteBoard/TLWbOval.h \
-    TLWhiteBoard/TLWbGraffiti.h
+    TLWhiteBoard/TLWbGraffiti.h \
+    TLWhiteBoard/TLWbUiConfig.h \
+    TLWhiteBoard/TLWbColorButton.h \
+    TLWhiteBoard/TLWbColorForm.h \
+    TLWhiteBoard/TLWbLineWidthForm.h \
+    TLWhiteBoard/TLWbShapeForm.h \
+    TLWhiteBoard/TLWbShapeFillForm.h \
+    TLWhiteBoard/TLWbTextForm.h \
+    TLWhiteBoard/TLWbPenForm.h \
+    TLWhiteBoard/TLWbMoveWidget.h
 
 
 
 FORMS += \
         TLMainWidget.ui \
     TLWhiteBoard/TLWhiteBoardMainWindow.ui \
-    TLWhiteBoard/TLWbToolDockWidget.ui \
-    TLWhiteBoard/TLWbToolForm.ui
+    TLWhiteBoard/TLWbToolForm.ui \
+    TLWhiteBoard/TLWbColorForm.ui \
+    TLWhiteBoard/TLWbLineWidthForm.ui \
+    TLWhiteBoard/TLWbShapeForm.ui \
+    TLWhiteBoard/TLWbShapeFillForm.ui \
+    TLWhiteBoard/TLWbTextForm.ui \
+    TLWhiteBoard/TLWbPenForm.ui
 
 
 SUBDIRS += \
