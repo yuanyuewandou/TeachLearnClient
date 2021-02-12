@@ -10,9 +10,11 @@ public:
 
 signals:
 protected:
+#if 0
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
+# endif
     void resizeEvent(QResizeEvent *event);
 public slots:
 };

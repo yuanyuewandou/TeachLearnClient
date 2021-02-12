@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui network
-
+CONFIG  += c++11
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = TeachLearnClient
@@ -39,7 +39,13 @@ SOURCES += \
     TLWhiteBoard/TLWbToolDockWidget.cpp \
     TLWhiteBoard/TLWbToolForm.cpp \
     TLWhiteBoard/TLWbView.cpp \
-    TLWhiteBoard/TLWbScene.cpp
+    TLWhiteBoard/TLWbScene.cpp \
+    TLWhiteBoard/TLWbShape.cpp \
+    TLWhiteBoard/TLWbLine.cpp \
+    TLWhiteBoard/TLWbRectangle.cpp \
+    TLWhiteBoard/TLWbTriangle.cpp \
+    TLWhiteBoard/TLWbOval.cpp \
+    TLWhiteBoard/TLWbGraffiti.cpp
 
 
 
@@ -56,7 +62,13 @@ HEADERS += \
     TLWhiteBoard/TLWbToolDockWidget.h \
     TLWhiteBoard/TLWbToolForm.h \
     TLWhiteBoard/TLWbView.h \
-    TLWhiteBoard/TLWbScene.h
+    TLWhiteBoard/TLWbScene.h \
+    TLWhiteBoard/TLWbShape.h \
+    TLWhiteBoard/TLWbLine.h \
+    TLWhiteBoard/TLWbRectangle.h \
+    TLWhiteBoard/TLWbTriangle.h \
+    TLWhiteBoard/TLWbOval.h \
+    TLWhiteBoard/TLWbGraffiti.h
 
 
 

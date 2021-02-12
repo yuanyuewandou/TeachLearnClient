@@ -7,6 +7,7 @@ TLWbView::TLWbView(QGraphicsScene *scene,QWidget *parent) :
     setRenderHint(QPainter::Antialiasing,true);
 }
 
+#if 0
 void TLWbView::mousePressEvent(QMouseEvent *event)
 {
     QGraphicsView::mousePressEvent(event);
@@ -21,6 +22,7 @@ void TLWbView::mouseReleaseEvent(QMouseEvent *event)
 {
     QGraphicsView::mouseReleaseEvent(event);
 }
+# endif
 
 void TLWbView::resizeEvent(QResizeEvent *event)
 {

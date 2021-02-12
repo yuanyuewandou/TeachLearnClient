@@ -2,7 +2,7 @@
 #define TLWHITEBOARDMAINWINDOW_H
 
 #include <QMainWindow>
-
+class TLWbScene;
 namespace Ui {
 class TLWhiteBoardMainWindow;
 }
@@ -19,10 +19,13 @@ private:
     void initUi();
     void initData();
     void initConnect();
+    void showEvent(QShowEvent *event);
+    void closeEvent(QCloseEvent *event);
 private slots:
 
 private:
     Ui::TLWhiteBoardMainWindow *ui;
+    TLWbScene* m_scene;
 };
 
 #endif // TLWHITEBOARDMAINWINDOW_H

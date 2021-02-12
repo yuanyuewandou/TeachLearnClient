@@ -34,16 +34,16 @@ void TLWbToolForm::initData()
 
 void TLWbToolForm::initConnect()
 {
-    connect(ui->m_linePushButton,SIGNAL(clicked(bool)),this,SLOT(slotLinePushButtonClicked()));
+
 }
 
-WB_TOOL_TYPE TLWbToolForm::getType()
+int TLWbToolForm::getType()
 {
     return m_type;
 }
 
 void TLWbToolForm::slotLinePushButtonClicked()
 {
-    m_type = WB_TOOL_TYPE::LINE;
+
 }
 

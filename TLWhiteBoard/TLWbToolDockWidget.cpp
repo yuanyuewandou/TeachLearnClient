@@ -26,8 +26,9 @@ void TLWbToolDockWidget::translateUi()
 void TLWbToolDockWidget::initUi()
 {
     this->setWindowTitle(g_strWhiteBoard);
+    setFloating(true);
     setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
-    setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    setAllowedAreas(Qt::NoDockWidgetArea);
 }
 
 void TLWbToolDockWidget::initData()
