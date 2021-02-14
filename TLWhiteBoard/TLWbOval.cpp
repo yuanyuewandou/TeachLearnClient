@@ -6,6 +6,11 @@ TLWbOval::TLWbOval(int type):TLWbRectangle(type)
 
 }
 
+TLWbOval::TLWbOval(const TLWbOval& oval):TLWbRectangle(oval)
+{
+
+}
+
 void TLWbOval::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     painter->save();
@@ -28,4 +33,10 @@ void TLWbOval::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     }
     painter->drawEllipse(m_rcBounding);
     painter->restore();
+}
+
+TLWbShape* TLWbOval::clone()
+{
+    TLWbShape* oval = new TLWbOval(*this);
+    return oval;
 }

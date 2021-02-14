@@ -4,11 +4,11 @@
 #include <QObject>
 #include <QWidget>
 
-class TLWbMoveWidget : public QObject
+class TLWbMoveWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit TLWbMoveWidget(QObject *parent = nullptr);
+    explicit TLWbMoveWidget(QWidget *parent = nullptr);
     //设置是否限定鼠标左键
     void setLeftButton(bool leftButton);
     //设置是否限定不能移出容器外面

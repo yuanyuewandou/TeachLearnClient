@@ -3,7 +3,13 @@
 
 TLWbLine::TLWbLine():TLWbShape(TOOL_LINE)
 {
-    m_rcBounding = QRectF(0,0,0,0);
+
+}
+
+TLWbLine::TLWbLine(const TLWbLine& line) :
+    TLWbShape(line)
+{
+    m_line = line.m_line;
 }
 
 void TLWbLine::setStartPoint(const QPointF &pos)
@@ -85,3 +91,11 @@ void TLWbLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     painter->drawLine(m_line);
     painter->restore();
 }
+
+TLWbShape* TLWbLine::clone()
+{
+    TLWbShape* line = new TLWbLine(*this);
+    return line;
+}
+
+

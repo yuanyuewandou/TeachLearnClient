@@ -52,7 +52,10 @@ SOURCES += \
     TLWhiteBoard/TLWbShapeFillForm.cpp \
     TLWhiteBoard/TLWbTextForm.cpp \
     TLWhiteBoard/TLWbPenForm.cpp \
-    TLWhiteBoard/TLWbMoveWidget.cpp
+    TLWhiteBoard/TLWbMoveWidget.cpp \
+    TLWhiteBoard/TLWbToolButton.cpp \
+    TLWhiteBoard/TLWbClient.cpp \
+    TLWbServer.cpp
 
 
 
@@ -83,7 +86,10 @@ HEADERS += \
     TLWhiteBoard/TLWbShapeFillForm.h \
     TLWhiteBoard/TLWbTextForm.h \
     TLWhiteBoard/TLWbPenForm.h \
-    TLWhiteBoard/TLWbMoveWidget.h
+    TLWhiteBoard/TLWbMoveWidget.h \
+    TLWhiteBoard/TLWbToolButton.h \
+    TLWhiteBoard/TLWbClient.h \
+    TLWbServer.h
 
 
 

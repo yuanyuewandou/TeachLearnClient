@@ -2,6 +2,7 @@
 #define TLWHITEBOARDMAINWINDOW_H
 
 #include <QMainWindow>
+#include <QJsonObject>
 class TLWbScene;
 class TLWbToolForm;
 namespace Ui {
@@ -20,10 +21,8 @@ private:
     void initUi();
     void initData();
     void initConnect();
-    void showEvent(QShowEvent *event);
-    void closeEvent(QCloseEvent *event);
 private slots:
-
+    void slotAddFigure(QJsonObject);
 private:
     Ui::TLWhiteBoardMainWindow *ui;
     TLWbScene* m_scene;

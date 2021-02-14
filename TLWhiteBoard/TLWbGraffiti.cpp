@@ -48,3 +48,23 @@ void TLWbGraffiti::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     painter->restore();
 }
 
+void TLWbGraffiti::setJsonObj(QJsonObject &obj)
+{
+    obj.insert("type",m_type);
+    QJsonObject data;
+    data.insert("color",QJsonValue((qint64)(m_strokeColor.rgba())));
+    data.insert("fill_color",QJsonValue((qint64)(m_fillColor.rgba())));
+    data.insert("line_width",QJsonValue(m_strokeWidth));
+    QJsonArray points;
+    int ptCount = m_path.elementCount();
+    QPainterPath::Element e;
+    for(int i = 0; i < ptCount; i++)
+    {
+        e = m_path.elementAt(i);
+        points.append(QJsonValue(e.x));
+        points.append(QJsonValue(e.y));
+    }
+    data.insert("points",QJsonValue(points));
+    obj.insert("data",QJsonValue(data));
+}
+

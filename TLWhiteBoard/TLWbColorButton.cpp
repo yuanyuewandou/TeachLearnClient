@@ -1,11 +1,17 @@
 #include "TLWbColorButton.h"
 
-TLWbColorButton::TLWbColorButton(QWidget *parent) : QPushButton(parent)
+TLWbColorButton::TLWbColorButton(QWidget *parent) : TLWbToolButton(parent)
 {
 }
 
 void TLWbColorButton::setColor(const QColor& color)
 {
-    QString style = QString("background-color:rgb(%1,%2,%3);").arg(color.red()).arg(color.green()).arg(color.blue());
+    m_color = color;
+    QString style = m_strStyle.arg(color.red()).arg(color.green()).arg(color.blue());
     setStyleSheet(style);
+}
+
+QColor TLWbColorButton::getColor() const
+{
+    return m_color;
 }

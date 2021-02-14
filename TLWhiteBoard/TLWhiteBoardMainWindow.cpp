@@ -27,46 +27,36 @@ void TLWhiteBoardMainWindow::translateUi()
 
 }
 
+void TLWhiteBoardMainWindow::initData()
+{
+    m_scene = nullptr;
+}
+
 void TLWhiteBoardMainWindow::initUi()
 {
     m_scene = new TLWbScene();
     m_scene->setSceneRect(0,0,800,500);
-    //m_scene->setToolType(TOOL_LINE);
-    //m_scene->setToolType(TOOL_RECTANGLE);
-    //m_scene->setToolType(TOOL_OVAL);
-    //m_scene->setToolType(TOOL_TRIANGLE);
-    m_scene->setToolType(TOOL_GRAFFITI);
+    m_scene->setUserId(151);
     TLWbView* wbView = new TLWbView(m_scene);
     wbView->setFixedSize(800,500);
     wbView->setSceneRect(0,0,800,500);
     setCentralWidget(wbView);
 
     TLWbToolForm* toolForm = new TLWbToolForm(this);
-    toolForm->setGeometry(10, 10, 332,300);
-    toolForm->show();
+    toolForm->setGeometry(10, 10, 350,200);
+    toolForm->showNormal();
     TLWbMoveWidget *moveWidget = new TLWbMoveWidget(this);
     moveWidget->setWidget(toolForm);
-}
 
-void TLWhiteBoardMainWindow::initData()
-{
-    m_scene = nullptr;
+    m_scene->setTooLFrom(toolForm);
 }
 
 void TLWhiteBoardMainWindow::initConnect()
 {
-
+    connect(m_scene,SIGNAL(sigAddFigureReq(QJsonObject)),this,SLOT(slotAddFigure(QJsonObject)));
 }
 
-void TLWhiteBoardMainWindow::showEvent(QShowEvent *event)
+void TLWhiteBoardMainWindow::slotAddFigure(QJsonObject figure)
 {
-    Q_UNUSED(event);
 
 }
-
-void TLWhiteBoardMainWindow::closeEvent(QCloseEvent *event)
-{
-    Q_UNUSED(event);
-
-}
-

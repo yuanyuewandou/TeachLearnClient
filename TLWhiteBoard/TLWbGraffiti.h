@@ -12,6 +12,7 @@ public:
     virtual void setEndPoint(const QPointF &pos);
     virtual void setStrokeWidth(const float w);
     virtual void setStrokeColor(const QColor &clr);
+    virtual void setJsonObj(QJsonObject &obj);
 protected:
     QPointF m_startPosScene;
     QPointF m_endPosScene;

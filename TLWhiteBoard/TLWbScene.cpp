@@ -1,4 +1,5 @@
 #include<QGraphicsSceneMouseEvent>
+#include<QJsonObject>
 #include "TLWbScene.h"
 #include "TLWbShape.h"
 #include "TLWbLine.h"
@@ -6,11 +7,14 @@
 #include "TLWbOval.h"
 #include "TLWbTriangle.h"
 #include "TLWbGraffiti.h"
+#include "TLWbToolForm.h"
 
 TLWbScene::TLWbScene(QObject *parent) : QGraphicsScene(parent)
 {
     m_toolType = TOOL_LINE;
     m_currentShape = nullptr;
+    m_toolForm = nullptr;
+    m_id = -1;
 }
 
 TLWbScene:: ~TLWbScene()
@@ -18,9 +22,21 @@ TLWbScene:: ~TLWbScene()
 
 }
 
-void TLWbScene::setToolType(int type)
+void TLWbScene::setTooLFrom(TLWbToolForm* toolForm)
 {
-    m_toolType = type;
+    m_toolForm = toolForm;
+}
+
+void TLWbScene::setUserId(int id)
+{
+    m_id = id;
+}
+void TLWbScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    QGraphicsScene::mousePressEvent(event);
+    if(event->button() != Qt::LeftButton)
+        return;
+
     if(m_currentShape != nullptr)
     {
         if(!m_currentShape->isValid())
@@ -29,39 +45,10 @@ void TLWbScene::setToolType(int type)
             m_currentShape = nullptr;
         }
     }
-    else
-    {
 
-    }
-}
-
-void TLWbScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
-{
-    QGraphicsScene::mousePressEvent(event);
-    if(event->button() != Qt::LeftButton)
-        return;
-    if(!event->isAccepted())
+    if(!event->isAccepted() && m_toolForm)
     {
-        switch(m_toolType)
-        {
-        case TOOL_LINE:
-            m_currentShape = new TLWbLine();
-            break;
-        case TOOL_RECTANGLE:
-            m_currentShape = new TLWbRectangle();
-            break;
-        case TOOL_OVAL:
-            m_currentShape = new TLWbOval();
-            break;
-        case TOOL_TRIANGLE:
-            m_currentShape = new TLWbTriangle();
-            break;
-        case TOOL_GRAFFITI:
-            m_currentShape = new TLWbGraffiti();
-            break;
-        default:
-            break;
-        }
+        m_currentShape = m_toolForm->getCurrentShape();
     }
 
     if(m_currentShape == nullptr)
@@ -88,7 +75,15 @@ void TLWbScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
         return;
     if(!event->isAccepted() && !m_currentShape)
     {
-        if(!m_currentShape->isValid())
+        if(m_currentShape->isValid())
+        {
+            m_shapeList.push_back(m_currentShape);
+            QJsonObject figure;
+            m_currentShape->setJsonObj(figure);
+            figure.insert("creator",m_id);
+            emit sigAddFigureReq(figure);
+        }
+        else
         {
             removeItem(m_currentShape);
             delete m_currentShape;

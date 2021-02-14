@@ -3,20 +3,28 @@
 #include "TLWbUiConfig.h"
 #include "TLWbShapeForm.h"
 
+#define MIN_HEIGHT 52
+#define LAYOUT_SPACING 10
+
 TLWbToolForm::TLWbToolForm(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::TLWbToolForm)
 {
     ui->setupUi(this);
+    initData();
     initUi();
     translateUi();
-    initData();
     initConnect();
 }
 
 TLWbToolForm::~TLWbToolForm()
 {
     delete ui;
+}
+
+TLWbShape* TLWbToolForm::getCurrentShape()
+{
+    return ui->m_shapePage->getCurrentShape();
 }
 
 void TLWbToolForm::translateUi()
@@ -32,11 +40,11 @@ void TLWbToolForm::initUi()
     ui->m_toolTextButton->setIcon(QIcon(IMAGE_TOOL_TEXT));
     ui->m_toolShapeButton->setIcon(QIcon(IMAGE_TOOL_SHAPES));
     ui->m_stackedWidget->hide();
+    setHeight(1);
 }
 
 void TLWbToolForm::initData()
 {
-
 }
 
 void TLWbToolForm::initConnect()
@@ -57,26 +65,39 @@ void TLWbToolForm::slotShapePushButtonClicked()
 {
     ui->m_stackedWidget->show();
     ui->m_stackedWidget->setCurrentWidget(ui->m_shapePage);
+    setHeight(5);
 }
 
 void TLWbToolForm::slotTextPushButtonClicked()
 {
     ui->m_stackedWidget->show();
     ui->m_stackedWidget->setCurrentWidget(ui->m_textPage);
+    setHeight(3);
 }
 
 void TLWbToolForm::slotPenPushButtonClicked()
 {
     ui->m_stackedWidget->show();
     ui->m_stackedWidget->setCurrentWidget(ui->m_penPage);
+    setHeight(3);
 }
 
 void TLWbToolForm::slotErasePushButtonClicked()
 {
     ui->m_stackedWidget->hide();
+    setHeight(1);
 }
 
 void TLWbToolForm::slotSelectPushButtonClicked()
 {
     ui->m_stackedWidget->hide();
+    setHeight(1);
+}
+
+void TLWbToolForm::setHeight(int row)
+{
+    if(row > 0)
+    {
+        setFixedHeight(MIN_HEIGHT * row - LAYOUT_SPACING * (row -1));
+    }
 }

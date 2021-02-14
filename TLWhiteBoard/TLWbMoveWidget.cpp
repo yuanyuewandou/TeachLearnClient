@@ -2,13 +2,15 @@
 #include <QEvent>
 #include <QMouseEvent>
 
-TLWbMoveWidget::TLWbMoveWidget(QObject *parent) : QObject(parent)
+TLWbMoveWidget::TLWbMoveWidget(QWidget *parent) : QWidget(parent)
 {
     m_lastPoint = QPoint(0, 0);
     m_pressed = false;
     m_leftButton = false;
     m_inControl = true;
     m_widget = nullptr;
+
+
 }
 
 void TLWbMoveWidget::setLeftButton(bool leftButton)

@@ -3,7 +3,12 @@
 
 TLWbRectangle::TLWbRectangle(int type):TLWbShape(type)
 {
-    m_rcBounding = QRectF(0,0,0,0);
+}
+
+TLWbRectangle::TLWbRectangle(const TLWbRectangle& rect)
+    :TLWbShape(rect)
+{
+
 }
 
 QRectF TLWbRectangle::boundingRect() const
@@ -81,24 +86,12 @@ void TLWbRectangle::setEndPoint(const QPointF &pos)
     setPos(startX,startY);
 }
 
-void TLWbRectangle::setStrokeWidth(const float w)
+
+TLWbShape* TLWbRectangle::clone()
 {
-    m_strokeWidth = w;
-    m_pen.setWidthF(w);
+    TLWbShape* rect = new TLWbRectangle(*this);
+    return rect;
 }
 
-void TLWbRectangle::setStrokeColor(const QColor &clr)
-{
-    m_strokeColor = clr;
-    m_pen.setColor(clr);
-}
 
-void TLWbRectangle::setFillColor(const QColor &clr)
-{
-    m_fillColor = clr;
-}
 
-bool TLWbRectangle::isValid()
-{
-
-}

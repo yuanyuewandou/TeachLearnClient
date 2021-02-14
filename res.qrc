@@ -17,5 +17,23 @@
         <file>res/image/wb_tool_erase.png</file>
         <file>res/image/wb_tool_text.png</file>
         <file>res/image/wb_tool_shapes.png</file>
+        <file>qm/lang_en.qm</file>
+        <file>qm/lang_en.ts</file>
+        <file>qm/lang_zh.qm</file>
+        <file>qm/lang_zh.ts</file>
+        <file>TLWidget/TLAnimationButton.cpp</file>
+        <file>TLWidget/TLAnimationButton.h</file>
+        <file>TLWidget/TLImageConfig.h</file>
+        <file>TLWidget/TLSwitchButton.cpp</file>
+        <file>TLWidget/TLSwitchButton.h</file>
+        <file>TLWidget/TLTranslateStr.cpp</file>
+        <file>TLWidget/TLTranslateStr.h</file>
+        <file>TLWidget/TLWidget.cpp</file>
+        <file>TLWidget/TLWidget.h</file>
+        <file>main.cpp</file>
+        <file>TLMainWidget.cpp</file>
+        <file>TLMainWidget.h</file>
+        <file>TLSettingObj.cpp</file>
+        <file>TLSettingObj.h</file>
     </qresource>
 </RCC>

@@ -6,6 +6,11 @@ TLWbTriangle::TLWbTriangle(int type):TLWbRectangle(type)
 
 }
 
+TLWbTriangle::TLWbTriangle(const TLWbTriangle& triangle):TLWbRectangle(triangle)
+{
+
+}
+
 void TLWbTriangle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     painter->save();
@@ -33,4 +38,10 @@ void TLWbTriangle::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     };
     painter->drawPolygon(points,3);
     painter->restore();
+}
+
+TLWbShape* TLWbTriangle::clone()
+{
+    TLWbShape* triangle = new TLWbTriangle(*this);
+    return triangle;
 }

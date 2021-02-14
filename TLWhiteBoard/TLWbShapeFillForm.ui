@@ -78,7 +78,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="TLWbColorButton" name="m_FillTransparentButton">
+       <widget class="TLWbToolButton" name="m_FillTransparentButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -112,7 +112,7 @@
        </widget>
       </item>
       <item>
-       <widget class="TLWbColorButton" name="m_FillColorButton">
+       <widget class="TLWbToolButton" name="m_FillColorButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -152,9 +152,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TLWbColorButton</class>
+   <class>TLWbToolButton</class>
    <extends>QPushButton</extends>
-   <header>TLWbColorButton.h</header>
+   <header>TLWbToolButton.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

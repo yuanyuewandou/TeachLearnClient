@@ -6,6 +6,7 @@
 namespace Ui {
 class TLWbToolForm;
 }
+class TLWbShape;
 
 class TLWbToolForm : public QWidget
 {
@@ -16,11 +17,13 @@ public:
     ~TLWbToolForm();
 public:
     int getType();
+    TLWbShape* getCurrentShape();
 private:
     void translateUi();
     void initUi();
     void initData();
     void initConnect();
+    void setHeight(int row);
 private slots:
     void slotShapePushButtonClicked();
     void slotTextPushButtonClicked();

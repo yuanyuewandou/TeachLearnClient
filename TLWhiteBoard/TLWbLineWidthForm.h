@@ -14,9 +14,19 @@ class TLWbLineWidthForm : public QWidget
 public:
     explicit TLWbLineWidthForm(QWidget *parent = 0);
     ~TLWbLineWidthForm();
-
+    int getLineWidth();
+private:
+    void initUi();
+    void initData();
+    void initConnect();
+    void initTranslate();
+signals:
+    void sigLineWidthChanged();
+private slots:
+    void slotLineWidthChanged();
 private:
     Ui::TLWbLineWidthForm *ui;
+    int m_width;
 };
 
 #endif // TLWBLINEWIDTHFORM_H
