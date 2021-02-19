@@ -6,6 +6,7 @@
 #include "TLWbShape.h"
 #include "TLWbMoveWidget.h"
 
+
 TLWhiteBoardMainWindow::TLWhiteBoardMainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::TLWhiteBoardMainWindow)
@@ -30,6 +31,7 @@ void TLWhiteBoardMainWindow::translateUi()
 void TLWhiteBoardMainWindow::initData()
 {
     m_scene = nullptr;
+    m_wbServer.listen(QHostAddress::Any,9001);
 }
 
 void TLWhiteBoardMainWindow::initUi()

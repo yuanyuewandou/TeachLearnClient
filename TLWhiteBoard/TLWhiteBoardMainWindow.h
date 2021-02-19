@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QJsonObject>
+#include "TLWbServer.h"
+
 class TLWbScene;
 class TLWbToolForm;
 namespace Ui {
@@ -27,6 +29,7 @@ private:
     Ui::TLWhiteBoardMainWindow *ui;
     TLWbScene* m_scene;
     TLWbToolForm* m_toolForm;
+    TLWbServer m_wbServer;
 };
 
 #endif // TLWHITEBOARDMAINWINDOW_H
