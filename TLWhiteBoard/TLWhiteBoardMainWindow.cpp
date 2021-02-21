@@ -49,16 +49,32 @@ void TLWhiteBoardMainWindow::initUi()
     toolForm->showNormal();
     TLWbMoveWidget *moveWidget = new TLWbMoveWidget(this);
     moveWidget->setWidget(toolForm);
-
     m_scene->setTooLFrom(toolForm);
 }
 
 void TLWhiteBoardMainWindow::initConnect()
 {
     connect(m_scene,SIGNAL(sigAddFigureReq(QJsonObject)),this,SLOT(slotAddFigure(QJsonObject)));
+    connect(&m_client,SIGNAL(sigJoined(QString,int)),this,SLOT(slotJoined(QString,int)));
+    connect(&m_client,SIGNAL(sigUserLeft(QString,int)),this,SLOT(slotUserLeft(QString,int)));
+}
+
+void TLWhiteBoardMainWindow::join(QString name)
+{
+    m_client.join(name,"localhost",9001);
 }
 
 void TLWhiteBoardMainWindow::slotAddFigure(QJsonObject figure)
+{
+
+}
+
+void TLWhiteBoardMainWindow::slotJoined(QString,int)
+{
+
+}
+
+void TLWhiteBoardMainWindow::slotUserLeft(QString,int)
 {
 
 }

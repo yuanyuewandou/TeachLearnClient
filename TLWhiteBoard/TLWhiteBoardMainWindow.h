@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QJsonObject>
 #include "TLWbServer.h"
+#include "TLWbClient.h"
 
 class TLWbScene;
 class TLWbToolForm;
@@ -18,6 +19,7 @@ class TLWhiteBoardMainWindow : public QMainWindow
 public:
     explicit TLWhiteBoardMainWindow(QWidget *parent = 0);
     ~TLWhiteBoardMainWindow();
+    void join(QString name);
 private:
     void translateUi();
     void initUi();
@@ -25,11 +27,14 @@ private:
     void initConnect();
 private slots:
     void slotAddFigure(QJsonObject);
+    void slotJoined(QString,int);
+    void slotUserLeft(QString,int);
 private:
     Ui::TLWhiteBoardMainWindow *ui;
     TLWbScene* m_scene;
     TLWbToolForm* m_toolForm;
     TLWbServer m_wbServer;
+    TLWbClient m_client;
 };
 
 #endif // TLWHITEBOARDMAINWINDOW_H
