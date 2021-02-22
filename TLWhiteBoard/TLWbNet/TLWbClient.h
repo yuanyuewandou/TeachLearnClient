@@ -15,6 +15,11 @@ public:
     void left();
     QString getName();
     int getId();
+    void resetState();
+    static int generateUserId();
+private:
+    void initData();
+    void initConnect();
 signals:
     void sigJoined(QString name,int id);
     void sigUserLeft(QString name,int id);
@@ -26,6 +31,7 @@ public slots:
 protected:
     QString m_name;
     int m_id;
+    static int m_idBase;
 };
 
 #endif // TLWBCLIENT_H

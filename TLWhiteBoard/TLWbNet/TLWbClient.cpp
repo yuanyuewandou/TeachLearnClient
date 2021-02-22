@@ -6,17 +6,25 @@
 #include<QJsonObject>
 #include<QJsonValue>
 
+int TLWbClient::m_idBase = 0;
+
+int TLWbClient::generateUserId()
+{
+    return ++m_idBase;
+}
+
 TLWbClient::TLWbClient(QObject *parent) : QTcpSocket(parent)
 {
-    connect(this,SIGNAL(connected()),this,SLOT(slotConnected()));
-    connect(this,SIGNAL(readyRead()),this,SLOT(slotReadyRead()));
-    connect(this,SIGNAL(disconnected()),this,SLOT(deleteLater()));
-    connect(this,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(slotError(QAbstractSocket::SocketError)));
+    initData();
+    initConnect();
 }
 
 TLWbClient::~TLWbClient()
 {
-
+    if(m_id > 0)
+    {
+        emit sigUserLeft(m_name,m_id);
+    }
 }
 
 QString TLWbClient::info()
@@ -34,7 +42,7 @@ void TLWbClient::join(QString name,QString host,int port)
 
 void TLWbClient::left()
 {
-    const char leftMsg[] = "{\"type\":\"left\"}";
+    const char leftMsg[] = "{\"type\":\"left\"}\n";
     write(leftMsg);
 }
 
@@ -46,6 +54,27 @@ QString TLWbClient::getName()
 int TLWbClient::getId()
 {
     return m_id;
+}
+
+void TLWbClient::resetState()
+{
+    m_id = -1;
+}
+
+
+
+void TLWbClient::initData()
+{
+    m_id = -1;
+    m_name = "";
+}
+
+void TLWbClient::initConnect()
+{
+    connect(this,SIGNAL(connected()),this,SLOT(slotConnected()));
+    connect(this,SIGNAL(readyRead()),this,SLOT(slotReadyRead()));
+    connect(this,SIGNAL(disconnected()),this,SLOT(deleteLater()));
+    connect(this,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(slotError(QAbstractSocket::SocketError)));
 }
 
 void TLWbClient::slotReadyRead()
@@ -64,6 +93,14 @@ void TLWbClient::slotReadyRead()
             m_id = obj.value("id").toInt();
             emit sigJoined(m_name,m_id);
         }
+
+        else if(type == "user_join")
+        {
+            QString name = obj.value("name").toString();
+            int id = obj.value("id").toInt();
+            emit sigJoined(name,id);
+        }
+
         else if(type == "user_left")
         {
             QString name = obj.value("name").toString();

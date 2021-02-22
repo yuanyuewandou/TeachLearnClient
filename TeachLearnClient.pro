@@ -24,7 +24,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 INCLUDEPATH += ./TLWidget\
                 ./TLUtils\
-                ./TLWhiteBoard
+                ./TLWhiteBoard\
+                ./TLWhiteBoard/TLWbNet
 
 SOURCES += \
         main.cpp \
@@ -54,8 +55,8 @@ SOURCES += \
     TLWhiteBoard/TLWbPenForm.cpp \
     TLWhiteBoard/TLWbMoveWidget.cpp \
     TLWhiteBoard/TLWbToolButton.cpp \
-    TLWhiteBoard/TLWbClient.cpp \
-    TLWhiteBoard/TLWbServer.cpp
+    TLWhiteBoard/TLWbNet/TLWbClient.cpp \
+    TLWhiteBoard/TLWbNet/TLWbServer.cpp
 
 
 
@@ -88,8 +89,8 @@ HEADERS += \
     TLWhiteBoard/TLWbPenForm.h \
     TLWhiteBoard/TLWbMoveWidget.h \
     TLWhiteBoard/TLWbToolButton.h \
-    TLWhiteBoard/TLWbClient.h \
-    TLWhiteBoard/TLWbServer.h
+    TLWhiteBoard/TLWbNet/TLWbClient.h \
+    TLWhiteBoard/TLWbNet/TLWbServer.h
 
 
 

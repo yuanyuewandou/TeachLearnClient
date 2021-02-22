@@ -3,6 +3,8 @@
 
 #include <QTcpServer>
 #include <list>
+#include <QJsonArray>
+
 class TLWbClient;
 
 class TLWbServer : public QTcpServer
@@ -15,9 +17,12 @@ protected:
     void incomingConnection(qintptr handle);
 signals:
 
-public slots:
+protected slots:
+    void slotUserJoined(QString name,int id);
+    void slotUserLeft(QString name,int id);
 protected:
     std::list<TLWbClient*> m_clients;
+    QJsonArray m_figures;
 };
 
 #endif // TLWBSERVER_H
