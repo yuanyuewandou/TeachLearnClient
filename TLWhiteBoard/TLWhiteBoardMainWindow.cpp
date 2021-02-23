@@ -31,7 +31,6 @@ void TLWhiteBoardMainWindow::translateUi()
 void TLWhiteBoardMainWindow::initData()
 {
     m_scene = nullptr;
-    m_wbServer.listen(QHostAddress::Any,9001);
 }
 
 void TLWhiteBoardMainWindow::initUi()

@@ -27,6 +27,20 @@ TLWbClient::~TLWbClient()
     }
 }
 
+void TLWbClient::initData()
+{
+    m_id = -1;
+    m_name = "";
+}
+
+void TLWbClient::initConnect()
+{
+    connect(this,SIGNAL(connected()),this,SLOT(slotConnected()));
+    connect(this,SIGNAL(readyRead()),this,SLOT(slotReadyRead()));
+    connect(this,SIGNAL(disconnected()),this,SLOT(deleteLater()));
+    connect(this,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(slotError(QAbstractSocket::SocketError)));
+}
+
 QString TLWbClient::info()
 {
     QString strInfo = QString("%1 : %2").arg(peerAddress().toString())
@@ -42,7 +56,12 @@ void TLWbClient::join(QString name,QString host,int port)
 
 void TLWbClient::left()
 {
-    const char leftMsg[] = "{\"type\":\"left\"}\n";
+    QJsonDocument doc;
+    QJsonObject obj;
+    obj.insert("type",QJsonValue("left"));
+    doc.setObject(obj);
+    QByteArray leftMsg = doc.toJson(QJsonDocument::Compact);
+    leftMsg.append('\n');
     write(leftMsg);
 }
 
@@ -61,55 +80,42 @@ void TLWbClient::resetState()
     m_id = -1;
 }
 
-
-
-void TLWbClient::initData()
-{
-    m_id = -1;
-    m_name = "";
-}
-
-void TLWbClient::initConnect()
-{
-    connect(this,SIGNAL(connected()),this,SLOT(slotConnected()));
-    connect(this,SIGNAL(readyRead()),this,SLOT(slotReadyRead()));
-    connect(this,SIGNAL(disconnected()),this,SLOT(deleteLater()));
-    connect(this,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(slotError(QAbstractSocket::SocketError)));
-}
-
 void TLWbClient::slotReadyRead()
 {
-    QByteArray data = readAll();
-    data.chop(1);
-
-    QJsonParseError JsonError;
-    QJsonDocument doc = QJsonDocument::fromJson(data);
-    if(JsonError.error == QJsonParseError::NoError)
+    while(canReadLine())
     {
-        QJsonObject obj = doc.object();
-        QString type = obj.value("type").toString();
-        if(type == "join_reply")
+        QByteArray data = readAll();
+        data.chop(1);
+        qDebug() << "msg: " << data.data();
+        QJsonParseError JsonError;
+        QJsonDocument doc = QJsonDocument::fromJson(data,&JsonError);
+        if(JsonError.error == QJsonParseError::NoError)
         {
-            m_id = obj.value("id").toInt();
-            emit sigJoined(m_name,m_id);
-        }
+            QJsonObject obj = doc.object();
+            QString type = obj.value("type").toString();
+            if(type == "join_reply")
+            {
+                m_id = obj.value("id").toInt();
+                emit sigJoined(m_name,m_id);
+            }
 
-        else if(type == "user_join")
-        {
-            QString name = obj.value("name").toString();
-            int id = obj.value("id").toInt();
-            emit sigJoined(name,id);
-        }
+            else if(type == "user_joined")
+            {
+                QString name = obj.value("name").toString();
+                int id = obj.value("id").toInt();
+                emit sigJoined(name,id);
+            }
 
-        else if(type == "user_left")
-        {
-            QString name = obj.value("name").toString();
-            int id = obj.value("id").toInt();
-            emit sigUserLeft(name,id);
-        }
-        else
-        {
-            qDebug() << "ready read";
+            else if(type == "user_left")
+            {
+                QString name = obj.value("name").toString();
+                int id = obj.value("id").toInt();
+                emit sigUserLeft(name,id);
+            }
+            else
+            {
+                qDebug() << "ready read";
+            }
         }
     }
 }
@@ -119,7 +125,7 @@ void TLWbClient::slotConnected()
     qDebug() <<__FUNCTION__;
     QJsonDocument doc;
     QJsonObject obj;
-    obj.insert("type",QJsonValue("join"));
+    obj.insert("type",QJsonValue("user_join"));
     obj.insert("name",QJsonValue(m_name));
     doc.setObject(obj);
     QByteArray joinMsg = doc.toJson(QJsonDocument::Compact);

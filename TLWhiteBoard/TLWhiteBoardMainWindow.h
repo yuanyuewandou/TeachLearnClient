@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <QJsonObject>
-#include "TLWbServer.h"
 #include "TLWbClient.h"
 
 class TLWbScene;
@@ -33,7 +32,6 @@ private:
     Ui::TLWhiteBoardMainWindow *ui;
     TLWbScene* m_scene;
     TLWbToolForm* m_toolForm;
-    TLWbServer m_wbServer;
     TLWbClient m_client;
 };
 
