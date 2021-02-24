@@ -16,8 +16,8 @@
   <widget class="TLAnimationButton" name="m_homeButton">
    <property name="geometry">
     <rect>
-     <x>770</x>
-     <y>40</y>
+     <x>830</x>
+     <y>30</y>
      <width>141</width>
      <height>101</height>
     </rect>
@@ -26,8 +26,8 @@
   <widget class="TLSwitchButton" name="m_languageSwitchButton" native="true">
    <property name="geometry">
     <rect>
-     <x>600</x>
-     <y>20</y>
+     <x>620</x>
+     <y>160</y>
      <width>121</width>
      <height>51</height>
     </rect>
@@ -36,8 +36,8 @@
   <widget class="TLAnimationButton" name="m_whiteBoardButton">
    <property name="geometry">
     <rect>
-     <x>670</x>
-     <y>100</y>
+     <x>850</x>
+     <y>160</y>
      <width>91</width>
      <height>101</height>
     </rect>
@@ -46,14 +46,50 @@
   <widget class="QPushButton" name="m_connectionPushButton">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>50</y>
+     <x>410</x>
+     <y>250</y>
      <width>71</width>
      <height>61</height>
     </rect>
    </property>
    <property name="text">
     <string>connection</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="m_userLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>20</y>
+     <width>221</width>
+     <height>61</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="m_userLabel">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>40</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="m_leftPushButton">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>50</y>
+     <width>71</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>left</string>
    </property>
   </widget>
  </widget>

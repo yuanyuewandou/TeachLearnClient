@@ -10,9 +10,8 @@ class TLWbClientConnection : public QTcpSocket
 public:
     explicit TLWbClientConnection(QObject *parent = nullptr);
     ~TLWbClientConnection();
+public:
     QString info();
-    void join(QString name,QString host,int port);
-    void left();
     QString getName();
     int getId();
     void resetState();
@@ -25,9 +24,7 @@ signals:
     void sigUserLeft(QString name,int id);
     void sigMsg(QByteArray data);
 public slots:
-    void slotConnected();
     void slotReadyRead();
-    void slotError(QAbstractSocket::SocketError err);
 protected:
     QString m_name;
     int m_id;

@@ -44,6 +44,7 @@ void TLMainWidget::initConnect()
 {
     connect(ui->m_languageSwitchButton,SIGNAL(checkedChanged(bool)),this,SLOT(slotLanguageSwitch(bool)));
     connect(ui->m_whiteBoardButton,SIGNAL(sigClicked()),this,SLOT(slotWhiteBoardClicked()));
+    connect(ui->m_leftPushButton,SIGNAL(clicked(bool)),this,SLOT(slotLeftClicked()));
 }
 
 void TLMainWidget::slotLanguageSwitch(bool isEnglish)
@@ -57,5 +58,10 @@ void TLMainWidget::slotLanguageSwitch(bool isEnglish)
 void TLMainWidget::slotWhiteBoardClicked()
 {
     m_whiteBoardWindow->show();
-    m_whiteBoardWindow->join("xiaoyuhao");
+    m_whiteBoardWindow->join(ui->m_userLineEdit->text());
+}
+
+void TLMainWidget::slotLeftClicked()
+{
+    m_whiteBoardWindow->left();
 }

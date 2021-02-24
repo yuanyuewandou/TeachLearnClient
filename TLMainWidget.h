@@ -21,6 +21,7 @@ private:
 private slots:
     void slotLanguageSwitch(bool);
     void slotWhiteBoardClicked();
+    void slotLeftClicked();
 private:
     Ui::TLMainWidget *ui;
     TLWhiteBoardMainWindow* m_whiteBoardWindow;

@@ -58,7 +58,7 @@ void TLWbClient::left()
 {
     QJsonDocument doc;
     QJsonObject obj;
-    obj.insert("type",QJsonValue("left"));
+    obj.insert("type",QJsonValue("user_left"));
     doc.setObject(obj);
     QByteArray leftMsg = doc.toJson(QJsonDocument::Compact);
     leftMsg.append('\n');
@@ -96,7 +96,7 @@ void TLWbClient::slotReadyRead()
             if(type == "join_reply")
             {
                 m_id = obj.value("id").toInt();
-                emit sigJoined(m_name,m_id);
+                emit sigJoinReply(m_name,m_id);
             }
 
             else if(type == "user_joined")

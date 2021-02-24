@@ -40,7 +40,7 @@ void TLWbServer::slotUserJoined(QString name,int id)
     {
         QJsonDocument doc;
         QJsonObject rootObj;
-        rootObj.insert("type",QJsonValue("join_type"));
+        rootObj.insert("type",QJsonValue("join_reply"));
         rootObj.insert("id",QJsonValue(id));
         //history figures
         if(m_figures.size() > 0)
@@ -62,14 +62,13 @@ void TLWbServer::slotUserJoined(QString name,int id)
         joinStr.append('\n');
         for(auto c: m_clients)
         {
-            //if(c->getId() != id)
+            if(c->getId() != id)
             {
                 c->write(joinStr);
             }
         }
     }
 }
-
 
 void TLWbServer::slotUserLeft(QString name,int id)
 {
@@ -78,6 +77,7 @@ void TLWbServer::slotUserLeft(QString name,int id)
     rootObj.insert("type",QJsonValue("user_left"));
     rootObj.insert("id",QJsonValue(id));
     rootObj.insert("name",QJsonValue(name));
+    doc.setObject(rootObj);
     QByteArray leftStr = doc.toJson(QJsonDocument::Compact);
     leftStr.append('\n');
 

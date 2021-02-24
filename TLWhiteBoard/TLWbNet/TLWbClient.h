@@ -21,6 +21,7 @@ private:
     void initData();
     void initConnect();
 signals:
+    void sigJoinReply(QString name,int id);
     void sigJoined(QString name,int id);
     void sigUserLeft(QString name,int id);
     void sigMsg(QByteArray data);

@@ -19,6 +19,7 @@ public:
     explicit TLWhiteBoardMainWindow(QWidget *parent = 0);
     ~TLWhiteBoardMainWindow();
     void join(QString name);
+    void left();
 private:
     void translateUi();
     void initUi();
@@ -27,6 +28,7 @@ private:
 private slots:
     void slotAddFigure(QJsonObject);
     void slotJoined(QString,int);
+    void slotJoinReply(QString,int);
     void slotUserLeft(QString,int);
 private:
     Ui::TLWhiteBoardMainWindow *ui;

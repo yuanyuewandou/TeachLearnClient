@@ -55,6 +55,7 @@ void TLWhiteBoardMainWindow::initConnect()
 {
     connect(m_scene,SIGNAL(sigAddFigureReq(QJsonObject)),this,SLOT(slotAddFigure(QJsonObject)));
     connect(&m_client,SIGNAL(sigJoined(QString,int)),this,SLOT(slotJoined(QString,int)));
+    connect(&m_client,SIGNAL(sigJoinReply(QString,int)),this,SLOT(slotJoinReply(QString,int)));
     connect(&m_client,SIGNAL(sigUserLeft(QString,int)),this,SLOT(slotUserLeft(QString,int)));
 }
 
@@ -63,17 +64,30 @@ void TLWhiteBoardMainWindow::join(QString name)
     m_client.join(name,"localhost",9001);
 }
 
+void TLWhiteBoardMainWindow::left()
+{
+    m_client.left();
+}
+
 void TLWhiteBoardMainWindow::slotAddFigure(QJsonObject figure)
 {
 
 }
 
-void TLWhiteBoardMainWindow::slotJoined(QString,int)
+void TLWhiteBoardMainWindow::slotJoined(QString name,int id)
 {
-
+    QString strJoinedInfo = QString("user:%1 joined,id:%2").arg(name).arg(id);
+    ui->m_statusbar->showMessage(strJoinedInfo,10000);
 }
 
-void TLWhiteBoardMainWindow::slotUserLeft(QString,int)
+void TLWhiteBoardMainWindow::slotJoinReply(QString name,int id)
 {
+    QString strJoinedReplyInfo = QString("user:%1 join Reply,id:%2").arg(name).arg(id);
+    ui->m_statusbar->showMessage(strJoinedReplyInfo,10000);
+}
 
+void TLWhiteBoardMainWindow::slotUserLeft(QString name,int id)
+{
+    QString strleftInfo = QString("user:%1 left,id:%2").arg(name).arg(id);
+    ui->m_statusbar->showMessage(strleftInfo,10000);
 }

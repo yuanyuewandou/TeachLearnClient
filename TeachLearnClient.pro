@@ -55,8 +55,7 @@ SOURCES += \
     TLWhiteBoard/TLWbPenForm.cpp \
     TLWhiteBoard/TLWbMoveWidget.cpp \
     TLWhiteBoard/TLWbToolButton.cpp \
-    TLWhiteBoard/TLWbNet/TLWbClient.cpp \
-    TLWhiteBoard/TLWbNet/TLWbServer.cpp
+    TLWhiteBoard/TLWbNet/TLWbClient.cpp
 
 
 
@@ -89,8 +88,7 @@ HEADERS += \
     TLWhiteBoard/TLWbPenForm.h \
     TLWhiteBoard/TLWbMoveWidget.h \
     TLWhiteBoard/TLWbToolButton.h \
-    TLWhiteBoard/TLWbNet/TLWbClient.h \
-    TLWhiteBoard/TLWbNet/TLWbServer.h
+    TLWhiteBoard/TLWbNet/TLWbClient.h
 
 
 

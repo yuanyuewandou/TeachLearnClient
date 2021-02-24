@@ -34,23 +34,6 @@ QString TLWbClientConnection::info()
     return strInfo;
 }
 
-void TLWbClientConnection::join(QString name,QString host,int port)
-{
-    m_name = name;
-    connectToHost(host,port);
-}
-
-void TLWbClientConnection::left()
-{
-    QJsonDocument doc;
-    QJsonObject obj;
-    obj.insert("type",QJsonValue("left"));
-    doc.setObject(obj);
-    QByteArray leftMsg = doc.toJson(QJsonDocument::Compact);
-    leftMsg.append('\n');
-    write(leftMsg);
-}
-
 QString TLWbClientConnection::getName()
 {
     return m_name;
@@ -66,8 +49,6 @@ void TLWbClientConnection::resetState()
     m_id = -1;
 }
 
-
-
 void TLWbClientConnection::initData()
 {
     m_id = -1;
@@ -76,10 +57,8 @@ void TLWbClientConnection::initData()
 
 void TLWbClientConnection::initConnect()
 {
-    connect(this,SIGNAL(connected()),this,SLOT(slotConnected()));
     connect(this,SIGNAL(readyRead()),this,SLOT(slotReadyRead()));
     connect(this,SIGNAL(disconnected()),this,SLOT(deleteLater()));
-    connect(this,SIGNAL(error(QAbstractSocket::SocketError)),this,SLOT(slotError(QAbstractSocket::SocketError)));
 }
 
 void TLWbClientConnection::slotReadyRead()
@@ -106,7 +85,7 @@ void TLWbClientConnection::slotReadyRead()
                    emit sigJoined(m_name, m_id);
                }
            }
-           else if(type == "left")
+           else if(type == "user_left")
            {
                if(m_id > 0)
                {
@@ -124,22 +103,4 @@ void TLWbClientConnection::slotReadyRead()
             qDebug() << "ClientConnection::onReadyRead, json error - " << error.errorString();
         }
     }
-}
-
-void TLWbClientConnection::slotConnected()
-{
-    qDebug() <<__FUNCTION__;
-    QJsonDocument doc;
-    QJsonObject obj;
-    obj.insert("type",QJsonValue("join"));
-    obj.insert("name",QJsonValue(m_name));
-    doc.setObject(obj);
-    QByteArray joinMsg = doc.toJson(QJsonDocument::Compact);
-    joinMsg.append('\n');
-    write(joinMsg);
-}
-
-void TLWbClientConnection::slotError(QAbstractSocket::SocketError err)
-{
-
 }
