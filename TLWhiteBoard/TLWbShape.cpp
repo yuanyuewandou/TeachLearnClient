@@ -1,6 +1,11 @@
 #include "TLWbShape.h"
 
 int TLWbShape::m_localStartId = 0;
+int TLWbShape::generateLocalId()
+{
+    return ++m_localStartId;
+}
+
 TLWbShape::TLWbShape(int type)
 {
     m_type = type;
@@ -57,13 +62,16 @@ void TLWbShape::setFillColor(const QColor &clr)
 
 bool TLWbShape::isValid()
 {
+    if(m_startPosScene == m_endPosScene)
+    {
+        return false;
+    }
     return true;
 }
 
-
 void TLWbShape::setJsonObj(QJsonObject& obj)
 {
-    obj.insert("type",m_type);
+    obj.insert("figure_type",m_type);
     QJsonObject data;
     data.insert("color",QJsonValue((qint64)(m_strokeColor.rgba())));
     data.insert("fill_color",QJsonValue((qint64)(m_fillColor.rgba())));
@@ -75,11 +83,6 @@ void TLWbShape::setJsonObj(QJsonObject& obj)
     points.append(QJsonValue(m_endPosScene.y()));
     data.insert("points",QJsonValue(points));
     obj.insert("data",QJsonValue(data));
-}
-
-int TLWbShape::generateLocalId()
-{
-    return ++m_localStartId;
 }
 
 void TLWbShape::setUserId(int id)

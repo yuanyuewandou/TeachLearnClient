@@ -60,21 +60,9 @@ void TLWbLine::setEndPoint(const QPointF &pos)
     setPos(startX,startY);
 }
 
-void TLWbLine::setStrokeWidth(const float w)
-{
-    m_strokeWidth = w;
-    m_pen.setWidthF(w);
-}
-
-void TLWbLine::setStrokeColor(const QColor &clr)
-{
-    m_strokeColor = clr;
-    m_pen.setColor(clr);
-}
-
 bool TLWbLine::isValid()
 {
-    return true;
+    return !m_line.isNull();
 }
 
 

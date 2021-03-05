@@ -36,10 +36,10 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="TLWbColorForm" name="widget" native="true"/>
+    <widget class="TLWbColorForm" name="m_colorWidget" native="true"/>
    </item>
    <item>
-    <widget class="TLWbLineWidthForm" name="widget_2" native="true"/>
+    <widget class="TLWbLineWidthForm" name="m_lineWidthWidget" native="true"/>
    </item>
    <item>
     <spacer name="verticalSpacer">

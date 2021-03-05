@@ -6,13 +6,6 @@
 #include<QJsonObject>
 #include<QJsonValue>
 
-int TLWbClient::m_idBase = 0;
-
-int TLWbClient::generateUserId()
-{
-    return ++m_idBase;
-}
-
 TLWbClient::TLWbClient(QObject *parent) : QTcpSocket(parent)
 {
     initData();
@@ -48,7 +41,7 @@ QString TLWbClient::info()
     return strInfo;
 }
 
-void TLWbClient::join(QString name,QString host,int port)
+void TLWbClient::join(const QString& name,const QString& host,const int& port)
 {
     m_name = name;
     connectToHost(host,port);
@@ -75,9 +68,30 @@ int TLWbClient::getId()
     return m_id;
 }
 
-void TLWbClient::resetState()
+void TLWbClient::sendAddFigureMsg(const QJsonObject& figure)
 {
-    m_id = -1;
+    QJsonDocument doc;
+    QJsonObject obj;
+    obj.insert("type",QJsonValue("figure_add"));
+    obj.insert("figure",QJsonValue(figure));
+    doc.setObject(obj);
+    QByteArray msg = doc.toJson(QJsonDocument::Compact);
+    msg.append("\n");
+    write(msg);
+    flush();
+}
+
+void TLWbClient::sendDeleteFigureMsg(const int globalId)
+{
+    QJsonDocument doc;
+    QJsonObject obj;
+    obj.insert("type",QJsonValue("figure_delete"));
+    obj.insert("global_id",QJsonValue(globalId));
+    doc.setObject(obj);
+    QByteArray msg = doc.toJson(QJsonDocument::Compact);
+    msg.append("\n");
+    write(msg);
+    flush();
 }
 
 void TLWbClient::slotReadyRead()
@@ -86,7 +100,7 @@ void TLWbClient::slotReadyRead()
     {
         QByteArray data = readAll();
         data.chop(1);
-        qDebug() << "msg: " << data.data();
+        qDebug() << "recv msg: " << data.data();
         QJsonParseError JsonError;
         QJsonDocument doc = QJsonDocument::fromJson(data,&JsonError);
         if(JsonError.error == QJsonParseError::NoError)
@@ -97,6 +111,11 @@ void TLWbClient::slotReadyRead()
             {
                 m_id = obj.value("id").toInt();
                 emit sigJoinReply(m_name,m_id);
+                QJsonArray figures = obj.value("figures").toArray();
+                for(auto it = figures.begin(); it!= figures.end();it++)
+                {
+                    emit sigFigureAdded((*it).toObject());
+                }
             }
 
             else if(type == "user_joined")
@@ -112,9 +131,25 @@ void TLWbClient::slotReadyRead()
                 int id = obj.value("id").toInt();
                 emit sigUserLeft(name,id);
             }
+
+            else if(type == "figure_added")
+            {
+                emit sigFigureAdded(obj.value("figure").toObject());
+            }
+
+            else if(type == "figure_delete")
+            {
+                emit sigFigureDeleted(obj.value("global_id").toInt());
+            }
+
+            else if(type == "figure_clear")
+            {
+                emit sigFigureCleared(obj.value("owner_id").toInt());
+            }
+
             else
             {
-                qDebug() << "ready read";
+                qDebug() << "TLWbClient unknown msg" << type;
             }
         }
     }
@@ -135,5 +170,6 @@ void TLWbClient::slotConnected()
 
 void TLWbClient::slotError(QAbstractSocket::SocketError err)
 {
-
+   qDebug() << "Error occurred" << errorString();
+   emit sigError(errorString());
 }

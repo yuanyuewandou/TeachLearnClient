@@ -24,7 +24,22 @@ TLWbToolForm::~TLWbToolForm()
 
 TLWbShape* TLWbToolForm::getCurrentShape()
 {
-    return ui->m_shapePage->getCurrentShape();
+    if(ui->m_stackedWidget->isVisible())
+    {
+        if(ui->m_stackedWidget->currentWidget() == ui->m_shapePage)
+        {
+            return ui->m_shapePage->getCurrentShape();
+        }
+        else if(ui->m_stackedWidget->currentWidget() == ui->m_penPage)
+        {
+            return ui->m_penPage->getCurrentShape();
+        }
+        else
+            return nullptr;
+    }
+    else
+        return nullptr;
+//    return ui->m_shapePage->getCurrentShape();
 }
 
 void TLWbToolForm::translateUi()
@@ -56,11 +71,6 @@ void TLWbToolForm::initConnect()
     connect(ui->m_selectButton,SIGNAL(clicked(bool)),this,SLOT(slotSelectPushButtonClicked()));
 }
 
-int TLWbToolForm::getType()
-{
-    return m_type;
-}
-
 void TLWbToolForm::slotShapePushButtonClicked()
 {
     ui->m_stackedWidget->show();
@@ -86,6 +96,7 @@ void TLWbToolForm::slotErasePushButtonClicked()
 {
     ui->m_stackedWidget->hide();
     setHeight(1);
+    emit sigErase();
 }
 
 void TLWbToolForm::slotSelectPushButtonClicked()

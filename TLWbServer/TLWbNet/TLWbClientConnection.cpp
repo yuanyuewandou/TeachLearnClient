@@ -6,11 +6,16 @@
 #include<QJsonObject>
 #include<QJsonValue>
 
-int TLWbClientConnection::m_idBase = 0;
-
+int TLWbClientConnection::m_userIdBase = 0;
 int TLWbClientConnection::generateUserId()
 {
-    return ++m_idBase;
+    return ++m_userIdBase;
+}
+
+int TLWbClientConnection::m_figureIdBase = 0;
+int TLWbClientConnection::generateFigureId()
+{
+    return ++m_figureIdBase;
 }
 
 TLWbClientConnection::TLWbClientConnection(QObject *parent) : QTcpSocket(parent)
@@ -67,7 +72,7 @@ void TLWbClientConnection::slotReadyRead()
     {
         QByteArray data = readAll();
         data.chop(1);
-        qDebug() << "msg: " << data.data();
+        qDebug() << "recv msg: " << data.data();
         QJsonParseError error;
         QJsonDocument doc = QJsonDocument::fromJson(data, &error);
         if(error.error == QJsonParseError::NoError)
@@ -82,7 +87,7 @@ void TLWbClientConnection::slotReadyRead()
                    QString name = rootObj["name"].toString();
                    m_name = name.toUtf8();
                    qDebug() << name << " join, id - " << m_id << " from " << info();
-                   emit sigJoined(m_name, m_id);
+                   emit sigUserJoined(m_name, m_id);
                }
            }
            else if(type == "user_left")
@@ -93,9 +98,17 @@ void TLWbClientConnection::slotReadyRead()
                    emit sigUserLeft(m_name, m_id);
                }
            }
-           else
+           else if(type == "figure_add")
            {
-               qDebug() << __FUNCTION__ << " got unknown message ,type - " << type;
+               QJsonObject figure = rootObj.value("figure").toObject();
+               figure.insert("global_id",QJsonValue(generateFigureId()));
+               emit sigFiguredAddReq(figure);
+           }
+
+           else if(type == "figure_delete")
+           {
+               int globalId = rootObj.value("global_id").toInt();
+               emit sigFiguredDeleteReq(globalId);
            }
         }
         else

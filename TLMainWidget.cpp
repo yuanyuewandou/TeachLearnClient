@@ -4,6 +4,10 @@
 #include "TLLog.h"
 #include "TLWhiteBoardMainWindow.h"
 
+#define DEFAULT_USER   "xiaoyuhao"
+#define DEFAULT_IP   "192.168.1.6"
+#define DEFAULT_PORT 9001
+
 TLMainWidget::TLMainWidget(QWidget *parent) :
     TLWidget(parent),
     ui(new Ui::TLMainWidget)
@@ -28,11 +32,18 @@ void TLMainWidget::translateUi()
 
     ui->m_whiteBoardButton->setText(g_strWhiteBoard);
     ui->m_whiteBoardButton->setImage(IMAGE_WHITE_BOARD);
+
+    ui->m_userLabel->setText(g_strUserName + g_strMaoHao);
+    ui->m_ipLabel->setText(g_strIp + g_strMaoHao);
+    ui->m_portLabel->setText(g_strPort + g_strMaoHao);
 }
 
 void TLMainWidget::initUi()
 {
     m_whiteBoardWindow = new TLWhiteBoardMainWindow(this);
+    ui->m_userLineEdit->setText(DEFAULT_USER);
+    ui->m_ipWidget->setIP(DEFAULT_IP);
+    ui->m_portLineEdit->setText(QString::number(DEFAULT_PORT));
 }
 
 void TLMainWidget::initData()
@@ -57,8 +68,13 @@ void TLMainWidget::slotLanguageSwitch(bool isEnglish)
 
 void TLMainWidget::slotWhiteBoardClicked()
 {
-    m_whiteBoardWindow->show();
-    m_whiteBoardWindow->join(ui->m_userLineEdit->text());
+    QString strUserName = ui->m_userLineEdit->text();
+    if(!strUserName.isEmpty())
+    {
+        m_whiteBoardWindow->show();
+        m_whiteBoardWindow->join(strUserName,ui->m_ipWidget->getIP(),
+                                 ui->m_portLineEdit->text().toInt());
+    }
 }
 
 void TLMainWidget::slotLeftClicked()

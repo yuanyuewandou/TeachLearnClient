@@ -6,6 +6,12 @@ TLWbGraffiti::TLWbGraffiti(int type) :TLWbShape(type)
     m_rcBounding = QRectF(0,0,0,0);
 }
 
+TLWbGraffiti::TLWbGraffiti(const TLWbGraffiti& gra) :TLWbShape(gra)
+{
+    m_path = gra.m_path;
+    m_topLeftInScene = gra.m_topLeftInScene;
+}
+
 void TLWbGraffiti::setStartPoint(const QPointF &pos)
 {
     setPos(pos);
@@ -22,18 +28,6 @@ void TLWbGraffiti::setEndPoint(const QPointF &pos)
     m_rcBounding.moveTo(0,0);
 }
 
-void TLWbGraffiti::setStrokeWidth(const float w)
-{
-    m_strokeWidth = w;
-    m_pen.setWidthF(w);
-}
-
-void TLWbGraffiti::setStrokeColor(const QColor &clr)
-{
-    m_strokeColor = clr;
-    m_pen.setColor(clr);
-}
-
 QRectF TLWbGraffiti::boundingRect() const
 {
     return m_rcBounding;
@@ -48,9 +42,14 @@ void TLWbGraffiti::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
     painter->restore();
 }
 
+void TLWbGraffiti::setPath(const QPainterPath& path)
+{
+    m_path = path;
+}
+
 void TLWbGraffiti::setJsonObj(QJsonObject &obj)
 {
-    obj.insert("type",m_type);
+    obj.insert("figure_type",m_type);
     QJsonObject data;
     data.insert("color",QJsonValue((qint64)(m_strokeColor.rgba())));
     data.insert("fill_color",QJsonValue((qint64)(m_fillColor.rgba())));
@@ -66,5 +65,16 @@ void TLWbGraffiti::setJsonObj(QJsonObject &obj)
     }
     data.insert("points",QJsonValue(points));
     obj.insert("data",QJsonValue(data));
+}
+
+bool TLWbGraffiti::isValid()
+{
+    return !m_path.isEmpty();
+}
+
+TLWbShape* TLWbGraffiti::clone()
+{
+    TLWbShape* gra = new TLWbGraffiti(*this);
+    return gra;
 }
 

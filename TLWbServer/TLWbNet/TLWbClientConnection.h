@@ -15,20 +15,23 @@ public:
     QString getName();
     int getId();
     void resetState();
-    static int generateUserId();
 private:
     void initData();
     void initConnect();
+    static int generateUserId();
+    static int generateFigureId();
 signals:
-    void sigJoined(QString name,int id);
-    void sigUserLeft(QString name,int id);
-    void sigMsg(QByteArray data);
+    void sigUserJoined(const QString& name,const int id);
+    void sigUserLeft(const QString& name,const int id);
+    void sigFiguredAddReq(const QJsonObject&);
+    void sigFiguredDeleteReq(const int globalId);
 public slots:
     void slotReadyRead();
 protected:
     QString m_name;
     int m_id;
-    static int m_idBase;
+    static int m_userIdBase;
+    static int m_figureIdBase;
 };
 
 #endif // TLWBCLIENT_H

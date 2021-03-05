@@ -12,6 +12,7 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     virtual void setStartPoint(const QPointF &pos);
     virtual void setEndPoint(const QPointF &pos);
+    virtual bool isValid();
     virtual TLWbShape* clone();
 };
 

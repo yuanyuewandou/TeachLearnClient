@@ -6,18 +6,17 @@ class TLWbGraffiti :public TLWbShape
 {
 public:
     TLWbGraffiti(int type = TOOL_GRAFFITI);
+    TLWbGraffiti(const TLWbGraffiti& gra);
+public:
     QRectF boundingRect() const;
+    virtual TLWbShape* clone();
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     virtual void setStartPoint(const QPointF &pos);
     virtual void setEndPoint(const QPointF &pos);
-    virtual void setStrokeWidth(const float w);
-    virtual void setStrokeColor(const QColor &clr);
     virtual void setJsonObj(QJsonObject &obj);
+    virtual bool isValid();
+    void setPath(const QPainterPath& path);
 protected:
-    QPointF m_startPosScene;
-    QPointF m_endPosScene;
-    QRectF  m_rcBounding;
-    QPen    m_pen;
     QPainterPath m_path;
     QPointF m_topLeftInScene;
 };

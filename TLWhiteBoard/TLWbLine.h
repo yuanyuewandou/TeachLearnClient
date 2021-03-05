@@ -12,8 +12,6 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     virtual void setStartPoint(const QPointF &pos);
     virtual void setEndPoint(const QPointF &pos);
-    virtual void setStrokeWidth(const float w);
-    virtual void setStrokeColor(const QColor &clr);
     virtual bool isValid();
     virtual TLWbShape* clone();
 protected:

@@ -41,10 +41,11 @@ bool TLSettingObj::setLanguage(EN_LANGUAGE laguage)
     QString strLanguageFile = "lang_zh.qm";
     if(laguage == EN_LANGUAGE::LANGUAGE_EN)
         strLanguageFile = "lang_en.qm";
-    m_translator.load(strLanguageFile,"./qm/");
+    m_translator.load(strLanguageFile,":/qm/");
     bool bRet = qApp->installTranslator(&m_translator);
     if(bRet && m_tranlateStr)
         m_tranlateStr->translateUi();
+    return true;
 }
 
 void TLSettingObj::initStyle()

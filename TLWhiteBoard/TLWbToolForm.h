@@ -16,7 +16,6 @@ public:
     explicit TLWbToolForm(QWidget *parent = 0);
     ~TLWbToolForm();
 public:
-    int getType();
     TLWbShape* getCurrentShape();
 private:
     void translateUi();
@@ -30,9 +29,10 @@ private slots:
     void slotPenPushButtonClicked();
     void slotErasePushButtonClicked();
     void slotSelectPushButtonClicked();
+signals:
+    void sigErase();
 private:
     Ui::TLWbToolForm *ui;
-    int m_type;
 };
 
 #endif // TLWBTOOLFORM_H

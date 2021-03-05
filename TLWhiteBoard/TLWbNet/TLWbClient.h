@@ -11,12 +11,12 @@ public:
     explicit TLWbClient(QObject *parent = nullptr);
     ~TLWbClient();
     QString info();
-    void join(QString name,QString host,int port);
+    void join(const QString& name,const QString& host,const int& port);
     void left();
     QString getName();
     int getId();
-    void resetState();
-    static int generateUserId();
+    void sendAddFigureMsg(const QJsonObject& figure);
+    void sendDeleteFigureMsg(const int globalId);
 private:
     void initData();
     void initConnect();
@@ -24,7 +24,10 @@ signals:
     void sigJoinReply(QString name,int id);
     void sigJoined(QString name,int id);
     void sigUserLeft(QString name,int id);
-    void sigMsg(QByteArray data);
+    void sigError(const QString& strError);
+    void sigFigureAdded(const QJsonObject& figure);
+    void sigFigureDeleted(const int id);
+    void sigFigureCleared(const int ownerId);
 public slots:
     void slotConnected();
     void slotReadyRead();
@@ -32,7 +35,6 @@ public slots:
 protected:
     QString m_name;
     int m_id;
-    static int m_idBase;
 };
 
 #endif // TLWBCLIENT_H

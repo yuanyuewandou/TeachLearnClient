@@ -86,12 +86,17 @@ void TLWbRectangle::setEndPoint(const QPointF &pos)
     setPos(startX,startY);
 }
 
+bool TLWbRectangle::isValid()
+{
+    return m_rcBounding.height() >= 1  && m_rcBounding.width() >= 1;
+}
 
 TLWbShape* TLWbRectangle::clone()
 {
     TLWbShape* rect = new TLWbRectangle(*this);
     return rect;
 }
+
 
 
 

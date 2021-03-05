@@ -15,13 +15,19 @@ public:
     explicit TLWbScene(QObject *parent = nullptr);
     ~TLWbScene();
     void setTooLFrom(TLWbToolForm* toolForm);
-    void setUserId(int id);
+    void setUserId(const int id);
+    void addFigure(const QJsonObject& figure);
+    void deleteFigure(const int globalId);
+    void undo();
 signals:
-    void sigAddFigureReq(QJsonObject figure);
+    void sigSendAddFigureMsg(const QJsonObject& figure);
+    void sigSendDeleteFigureMsg(const int globalId);
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+private:
+    bool setShapePos(TLWbShape* shape,const QJsonArray& points);
 public slots:
 protected:
     int m_toolType;

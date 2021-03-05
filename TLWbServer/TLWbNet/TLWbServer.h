@@ -18,8 +18,10 @@ protected:
 signals:
 
 protected slots:
-    void slotUserJoined(QString name,int id);
-    void slotUserLeft(QString name,int id);
+    void slotUserJoined(const QString& name,const int id);
+    void slotUserLeft(const QString& name,const int id);
+    void slotFigureAddReq(const QJsonObject&);
+    void slotFigureDeleteReq(const int globalId);
 protected:
     std::list<TLWbClientConnection*> m_clients;
     QJsonArray m_figures;
